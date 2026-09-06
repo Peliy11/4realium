@@ -1696,6 +1696,50 @@ if type(castRayF) == "function" and hookfunction then
     end)
 end
 
+-- Namecall fallback for silent aim
+local oldNC = oldNamecall
+if type(hookmetamethod) == "function" then
+    hookmetamethod(game, "__namecall", newcclosure(function(self, ...)
+        local m = getnamecallmethod and getnamecallmethod()
+        local a = { ... }
+
+        if m == "FireServer" then
+            if self == remotes.remote then
+                local t = a[1]
+                local p = (type(t) == "table" and t[1] and t[1][2]) or nil
+                if typeof(p) == "Vector3" then
+                    targetPos = p
+                    shot = true
+
+                    if SilentAimToggle.Value and currentTarget and currentTarget.Character then
+                        local part = currentTarget.Character:FindFirstChild(BodyPartsDropdown.Value)
+                        if part then
+                            if didHit() then
+                                if type(t) == "table" and t[1] then
+                                    t[1][2] = part.Position
+                                    a[1] = t
+                                end
+                            end
+                        end
+                    end
+                end
+
+                local obj = (type(t) == "table" and t[1] and t[1][3]) or nil
+                local success, validObj = pcall(function()
+                    return obj and typeof(obj) == "Instance" and obj.Parent and obj.Name ~= "" and obj
+                end)
+                if success and validObj then
+                    hitpart = validObj
+                else
+                    hitpart = nil
+                end
+            end
+        end
+
+        return oldNC(self, table.unpack(a))
+    end))
+end
+
 local ArrestAuraToggle = groups.ArrestAuraBox:AddToggle("ArrestAuraToggle1", {
     Text = "Arrest Aura Toggle",
     Default = false,
@@ -1812,6 +1856,7 @@ local antitase1 = groups.CounterBox:AddToggle("AntiTase1", {
     Default = false,
     Callback = function(Value)
         if Value then
+            if type(getconnections) ~= "function" then return end
             for _, conn in pairs(getconnections(remotes.tasedremote.OnClientEvent)) do
                 conn:Disable()
                 table.insert(connections, conn)
@@ -1829,6 +1874,7 @@ local antitase1 = groups.CounterBox:AddToggle("AntiTase1", {
 LocalPlayer.CharacterAdded:Connect(function(character)
     wait(0.1)
     if antitase1.Value == true then
+        if type(getconnections) ~= "function" then return end
         for _, conn in pairs(getconnections(remotes.tasedremote.OnClientEvent)) do
             conn:Disable()
             table.insert(connections, conn)
@@ -1846,13 +1892,17 @@ groups.Misc:AddToggle("EnableDesync1", {
     Default = false,
     Callback = function(Value)
         NotifyToggle("Desync", Value)
-        setfflag("NextGenReplicatorEnabledWrite4", Value and "true" or "false")
+        if type(setfflag) == "function" then
+            setfflag("NextGenReplicatorEnabledWrite4", Value and "true" or "false")
+        end
     end
 })
 
 services.Players.PlayerRejoining:Connect(function(player)
     if player == LocalPlayer then
-        setfflag("NextGenReplicatorEnabledWrite4", "false")
+        if type(setfflag) == "function" then
+            setfflag("NextGenReplicatorEnabledWrite4", "false")
+        end
     end
 end)
 
