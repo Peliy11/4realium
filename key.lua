@@ -14,6 +14,7 @@ Sigil.Links.Discord = "discord.gg/jnkie"
 Sigil.Storage.FileName = "4realium_key"
 Sigil.Storage.Remember = false
 Sigil.Storage.AutoLoad = false
+Sigil.Options.Keyless = false
 
 Sigil.Shop = {
     Enabled = true,
