@@ -1,4 +1,5 @@
--- WindUI loader
+getgenv().SCRIPT_KEY = nil
+
 local WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
 local Junkie = loadstring(game:HttpGet("https://jnkie.com/sdk/library.lua"))()
 Junkie.service = "4real"
@@ -6,7 +7,7 @@ Junkie.identifier = "1104877"
 Junkie.provider = "Apollo Program"
 
 WindUI.Services.junkiedevelopment = {
-    Name = "Junkie Development", 
+    Name = "Junkie Development",
     Icon = "shield-check",
     Args = { "ServiceId", "ApiKey", "Provider" },
 
@@ -24,11 +25,14 @@ WindUI.Services.junkiedevelopment = {
                     return false, "Invalid key"
                 end
             end
+            return false, "Invalid key"
         end
 
         local function Copy()
             local link = Junkie.get_key_link()
-            if setclipboard then setclipboard(link) end
+            if type(setclipboard) == "function" then
+                setclipboard(link)
+            end
             return link
         end
 
@@ -37,20 +41,20 @@ WindUI.Services.junkiedevelopment = {
 }
 
 local Window = WindUI:CreateWindow({
-    Title = "Junkie-Development", -- CHANGE TITLE HERE!
+    Title = "Junkie-Development",
     Theme = "Dark",
     Transparent = true,
     Resizable = true,
 
     KeySystem = {
         Note = "Enter your key to continue.",
-        SaveKey = true,
+        SaveKey = false,
         API = {
             {
                 Title = "Junkie",
-                Desc  = "Click to copy link",
-                Icon  = "key-round",
-                Type  = "junkiedevelopment"
+                Desc = "Click to copy link",
+                Icon = "key-round",
+                Type = "junkiedevelopment"
             }
         }
     }
@@ -59,4 +63,7 @@ local Window = WindUI:CreateWindow({
 while not getgenv().SCRIPT_KEY do
     task.wait(0.1)
 end
-    
+
+if Window and type(Window.Destroy) == "function" then
+    Window:Destroy()
+end
