@@ -12,8 +12,8 @@ Onyx.Appearance = {
 
 Onyx.Links.Discord = "discord.gg/1234"
 Onyx.Storage.FileName = "4realium_key"
-Onyx.Storage.Remember = false
-Onyx.Storage.AutoLoad = false
+Onyx.Storage.Remember = true
+Onyx.Storage.AutoLoad = true
 Onyx.Options.Keyless = false
 
 Onyx.Shop = {
