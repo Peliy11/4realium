@@ -6,11 +6,11 @@ Onyx.Appearance = {
     Title = "4realium",
     Subtitle = "Enter your key to continue",
     KeylessTitle = "4realium",
-    KeylessSubtitle = "No key required for this build - you're verified.",
+    KeylessSubtitle = "Keyless for now!",
     Icon = "",
 }
 
-Onyx.Links.Discord = "discord.gg/jnkie"
+Onyx.Links.Discord = "discord.gg/1234"
 Onyx.Storage.FileName = "4realium_key"
 Onyx.Storage.Remember = false
 Onyx.Storage.AutoLoad = false
@@ -22,7 +22,7 @@ Onyx.Shop = {
     Title = "Get Premium",
     Subtitle = "Instant delivery - 24/7 support",
     ButtonText = "Buy",
-    Link = "jnkie.com"
+    Link = "4realium.xyz"
 }
 
 Onyx:LaunchJunkie({
