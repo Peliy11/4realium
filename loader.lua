@@ -1,7 +1,5 @@
-local HttpService = game:GetService("HttpService")
 local Players = game:GetService("Players")
 
--- Run key system first
 local keySuccess, keyErr = pcall(function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Peliy11/4realium/refs/heads/main/key.lua"))()
 end)
@@ -12,25 +10,20 @@ if not keySuccess then
     return
 end
 
--- Wait for key validation
 task.wait(1)
 
--- Check if key was validated
-if not getgenv().KeyValid then
+if not getgenv().SCRIPT_KEY then
     Players.LocalPlayer:Kick("4realium | Invalid key")
     return
 end
 
--- Game ID based loader
-local gameId = game.PlaceId
 local scripts = {
     [155615604] = "https://raw.githubusercontent.com/Peliy11/4realium/refs/heads/main/155615604.lua",
 }
 
-local scriptUrl = scripts[gameId]
-
+local scriptUrl = scripts[game.PlaceId]
 if not scriptUrl then
-    Players.LocalPlayer:Kick("4realium | Unsupported game: " .. tostring(gameId))
+    Players.LocalPlayer:Kick("4realium | Unsupported game: " .. tostring(game.PlaceId))
     return
 end
 
