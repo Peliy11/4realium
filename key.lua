@@ -1,9 +1,8 @@
-
 getgenv().SCRIPT_KEY = nil
 
-local Sigil = loadstring(game:HttpGet("https://cdn.jnkie.com/SigilUI.lua"))()
+local Onyx = loadstring(game:HttpGet("https://cdn.jnkie.com/OnyxUI.lua"))()
 
-Sigil.Appearance = {
+Onyx.Appearance = {
     Title = "4realium",
     Subtitle = "Enter your key to continue",
     KeylessTitle = "4realium",
@@ -11,13 +10,13 @@ Sigil.Appearance = {
     Icon = "",
 }
 
-Sigil.Links.Discord = "discord.gg/jnkie"
-Sigil.Storage.FileName = "4realium_key"
-Sigil.Storage.Remember = false
-Sigil.Storage.AutoLoad = false
-Sigil.Options.Keyless = false
+Onyx.Links.Discord = "discord.gg/jnkie"
+Onyx.Storage.FileName = "4realium_key"
+Onyx.Storage.Remember = false
+Onyx.Storage.AutoLoad = false
+Onyx.Options.Keyless = false
 
-Sigil.Shop = {
+Onyx.Shop = {
     Enabled = true,
     Icon = "",
     Title = "Get Premium",
@@ -26,7 +25,7 @@ Sigil.Shop = {
     Link = "jnkie.com"
 }
 
-Sigil:LaunchJunkie({
+Onyx:LaunchJunkie({
     Service = "4real",
     Identifier = "1104877",
     Provider = "Apollo Program"
