@@ -10,7 +10,7 @@ Onyx.Appearance = {
     Icon = "",
 }
 
-Onyx.Links.Discord = "discord.gg/1234"
+Onyx.Links.Discord = "https://discord.gg/nRrhFFnM5"
 Onyx.Storage.FileName = "4realium_key"
 Onyx.Storage.Remember = true
 Onyx.Storage.AutoLoad = true
@@ -22,7 +22,7 @@ Onyx.Shop = {
     Title = "Get Premium",
     Subtitle = "Instant delivery - 24/7 support",
     ButtonText = "Buy",
-    Link = "4realium.xyz"
+    Link = "https://discord.gg/nRrhFFnM5"
 }
 
 Onyx:LaunchJunkie({
